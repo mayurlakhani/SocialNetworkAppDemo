@@ -1,0 +1,25 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: db-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/social_network_app
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  kafka:
+    topic:
+      name: userProfile
+    topic-profile-visit:
+      name: userProfileVisitTopic
+    topic-profile-list:
+      name: userProfileListTopic
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: userProfileGroup
+      auto-offset-reset: earliest
+      value-serializer: org.apache.kafka.common.support.serializer.StringDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
