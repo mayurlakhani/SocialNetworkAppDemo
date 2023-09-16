@@ -1,6 +1,9 @@
 package com.meet5.kafkaconsumer.service;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.core.JsonProcessingException;
+=======
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 import com.meet5.kafkaconsumer.model.ProfileVisits;
 import com.meet5.kafkaconsumer.utils.ResourceNotFoundException;
 
@@ -22,5 +25,9 @@ public interface UserProfileService {
 
     List<Integer> markUsersAsFraudulent();
 
+<<<<<<< HEAD
     int bulkDataInsertion(String eventMessage) throws JsonProcessingException;
+=======
+    void bulkDataInsertion(String eventMessage);
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 }

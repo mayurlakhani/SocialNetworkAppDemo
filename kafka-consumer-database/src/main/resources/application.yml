@@ -11,6 +11,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   kafka:
+<<<<<<< HEAD
     properties:
       max:
         metadata:
@@ -33,3 +34,17 @@ spring:
       value-serializer: org.apache.kafka.common.support.serializer.StringDeserializer
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       auto-commit-interval: 2000
+=======
+    topic:
+      name: userProfile
+    topic-profile-visit:
+      name: userProfileVisitTopic
+    topic-profile-list:
+      name: userProfileListTopic
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: userProfileGroup
+      auto-offset-reset: earliest
+      value-serializer: org.apache.kafka.common.support.serializer.StringDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3

@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+/*
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 package com.meet5.userprofile.model;
 
 import lombok.*;
@@ -22,3 +26,7 @@ public class ProfileVisits {
         return this.visitCounter += visitCounter;
     }
 }
+<<<<<<< HEAD
+=======
+*/
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3

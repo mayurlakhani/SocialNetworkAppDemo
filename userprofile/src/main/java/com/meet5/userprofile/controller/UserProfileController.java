@@ -1,4 +1,5 @@
 package com.meet5.userprofile.controller;
+<<<<<<< HEAD
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.meet5.userprofile.Service.KafkaUserProfileConsumer;
@@ -7,12 +8,20 @@ import com.meet5.userprofile.dto.IdDto;
 import com.meet5.userprofile.dto.ResponseProfileVisitorList;
 import com.meet5.userprofile.dto.UserProfileEvent;
 import com.meet5.userprofile.model.ProfileVisits;
+=======
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.meet5.userprofile.config.UserProfileProducer;
+import com.meet5.userprofile.dto.IdDto;
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 import com.meet5.userprofile.model.UserProfile;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.context.annotation.Profile;
+=======
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +33,7 @@ import java.util.List;
 @Slf4j
 public class UserProfileController {
 
+<<<<<<< HEAD
     /*  @Autowired
       UserProfileService userProfileService;*/
     @Autowired
@@ -32,6 +42,14 @@ public class UserProfileController {
     @Autowired
     private KafkaUserProfileConsumer kafkaUserProfileConsumer;
     public UserProfileController(KafkaUserProfileProducer userProfileProducer) {
+=======
+  /*  @Autowired
+    UserProfileService userProfileService;*/
+    @Autowired
+    private UserProfileProducer userProfileProducer;
+
+    public UserProfileController(UserProfileProducer userProfileProducer) {
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
         this.userProfileProducer = userProfileProducer;
     }
 
@@ -46,6 +64,7 @@ public class UserProfileController {
 
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);*/
 
+<<<<<<< HEAD
         UserProfileEvent userProfileEvent = new UserProfileEvent();
         userProfileEvent.setMessage("userprofile is in pending state");
         userProfileEvent.setStatus("PENDING");
@@ -53,12 +72,16 @@ public class UserProfileController {
 
         userProfileProducer.sendUserProfileEventMessage(userProfileEvent);
         //userProfileProducer.sendUserProfileRequest(userProfileRequest);
+=======
+        userProfileProducer.sendUserProfileRequest(userProfileRequest);
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PostMapping("/insertBulkUsers")
     public String insertMultipleUserProfiles(@RequestBody List<UserProfile> dataList) {
         userProfileProducer.insertBulkData(dataList);
+<<<<<<< HEAD
         return "Bulk data insertion in progress.";
     }
 
@@ -66,12 +89,21 @@ public class UserProfileController {
     public ResponseEntity<HttpStatus> CreateProfileVisitor(@RequestParam(name = "userId") Long userId,
                                                            @RequestParam(name = "visitorId") Long visitorId) {
         // monolithic way
+=======
+        return "Bulk data inserted successfully.";
+    }
+   @PostMapping(value = "/user/visit")
+    public ResponseEntity<HttpStatus> CreateProfileVisitor(@RequestParam(name = "userId") Long userId,
+                                                           @RequestParam(name = "visitorId") Long visitorId)  {
+       // monolithic way
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
        /* int userprofileVisitorRes = userProfileService.createUserProfileVisitor(userId, visitorId);
         if (userprofileVisitorRes > 0) {
             log.info("user's profile visit saved");
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
          return new ResponseEntity<>(HttpStatus.BAD_REQUEST);*/
+<<<<<<< HEAD
         IdDto idDto = IdDto.builder()
                 .user(userId)
                 .visitor(visitorId)
@@ -84,6 +116,19 @@ public class UserProfileController {
     @PostMapping(value = "/user/like")
     public ResponseEntity<HttpStatus> CreateProfileLikes(@RequestParam(name = "userId") Long userId,
                                                          @RequestParam(name = "visitorId") Long likerId) {
+=======
+       IdDto idDto = IdDto.builder()
+               .user_id(userId)
+               .visitor_id(visitorId)
+               .activity("visit")
+               .build();
+       userProfileProducer.sendProfileVisitorOrProfileLikerId(idDto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    @PostMapping(value = "/user/like")
+    public ResponseEntity<HttpStatus> CreateProfileLikes(@RequestParam(name = "userId") Long userId,
+                                                         @RequestParam(name = "visitorId") Long likerId)  {
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
         // monolithic way
        /* int profileLikes = userProfileService.createUserProfileLikes(userId, likerId);
         if (profileLikes > 0) {
@@ -92,6 +137,7 @@ public class UserProfileController {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);*/
         IdDto idDto = IdDto.builder()
+<<<<<<< HEAD
                 .user(userId)
                 .visitor(likerId)
                 .activity("like")
@@ -104,12 +150,27 @@ public class UserProfileController {
     //@CircuitBreaker(name = "visitors", fallbackMethod = "fallback")
     //@TimeLimiter(name = "visitors")
     public ResponseEntity<List<ProfileVisits>> findProfileVisitorsByVisitedProfileId(@RequestParam(name = "userId") Long userId) {
+=======
+                .user_id(userId)
+                .visitor_id(likerId)
+                .activity("like")
+                .build();
+        userProfileProducer.sendProfileVisitorOrProfileLikerId(idDto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+   @GetMapping("/user/visitors")
+   @CircuitBreaker(name="visitors", fallbackMethod="fallback")
+   @TimeLimiter(name="visiotrs")
+    public ResponseEntity<HttpStatus> findProfileVisitorsByVisitedProfileId(@RequestParam(name = "userId") Long userId)  {
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
         // monolithic way
        /* List<ProfileVisits> profileVisitsList= userProfileService.findProfileVisitorsByUserId(userId);
         if(profileVisitsList.isEmpty()){
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity(profileVisitsList, HttpStatus.OK);*/
+<<<<<<< HEAD
         IdDto idDto = IdDto.builder()
                 .user(userId)
                 .activity("fetch")
@@ -119,6 +180,14 @@ public class UserProfileController {
         log.info("res: " +  lp);
 
        return new ResponseEntity(lp, HttpStatus.OK);
+=======
+       IdDto idDto = IdDto.builder()
+               .user_id(userId)
+               .activity("fetch")
+               .build();
+       userProfileProducer.sendProfileVisitorOrProfileLikerId(idDto);
+       return new ResponseEntity(HttpStatus.OK);
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
     }
 
     public String fallbackMethod(Throwable t) {

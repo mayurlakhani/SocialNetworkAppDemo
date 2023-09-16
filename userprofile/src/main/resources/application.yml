@@ -11,12 +11,27 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   kafka:
+<<<<<<< HEAD
     consumer:
       topic1: userProfile
       topic2: userProfileVisitTopic
       topic3: userProfileListTopic
       topicRes: response_notification
       topic4: profileVisitsList
+=======
+    topic:
+      name: userProfile
+    topic-profile-visit:
+      name: userProfileVisitTopic
+    topic-profile-list:
+      name: userProfileListTopic
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: userProfileGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
     producer:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer

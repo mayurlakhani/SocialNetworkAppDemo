@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/EurekaServer/EurekaServer.iml" filepath="$PROJECT_DIR$/EurekaServer/EurekaServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kafka-consumer-database/kafka-consumer-database.iml" filepath="$PROJECT_DIR$/kafka-consumer-database/kafka-consumer-database.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social-network.iml" filepath="$PROJECT_DIR$/social-network.iml" />
+      <module fileurl="file://$PROJECT_DIR$/userprofile/userprofile.iml" filepath="$PROJECT_DIR$/userprofile/userprofile.iml" />
+    </modules>
+  </component>
+</project>

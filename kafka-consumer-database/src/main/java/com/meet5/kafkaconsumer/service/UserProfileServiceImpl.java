@@ -1,6 +1,9 @@
 package com.meet5.kafkaconsumer.service;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.core.JsonProcessingException;
+=======
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meet5.kafkaconsumer.model.ProfileLikes;
@@ -12,7 +15,11 @@ import com.meet5.kafkaconsumer.model.UserProfile;
 import com.meet5.kafkaconsumer.utils.UserValidator;
 import com.meet5.kafkaconsumer.utils.ValidationException;
 import lombok.extern.slf4j.Slf4j;
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
+=======
+import org.apache.catalina.User;
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -21,18 +28,27 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
+<<<<<<< HEAD
+=======
+import java.io.IOException;
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 
 @Service
 @Slf4j
 public class UserProfileServiceImpl implements UserProfileService {
 
     private final JdbcTemplate jdbcTemplate;
+<<<<<<< HEAD
 
     @Autowired
     UserValidator userValidator;
@@ -42,6 +58,15 @@ public class UserProfileServiceImpl implements UserProfileService {
         this.userValidator = userValidator;
     }
 
+=======
+    private UserValidator userValidator;
+
+    public UserProfileServiceImpl(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
     @Override
     public int createUserprofile(UserProfile userProfile) throws ResourceNotFoundException, ValidationException {
 
@@ -155,6 +180,7 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     @Override
+<<<<<<< HEAD
     public int bulkDataInsertion(String profileListObj) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         log.info("Profile List Obj: " + profileListObj);
@@ -172,10 +198,35 @@ public class UserProfileServiceImpl implements UserProfileService {
                     preparedStatement.setString(1, up.getName());
                     preparedStatement.setString(2, up.getEmail());
                     preparedStatement.setInt(3, up.getAge());
+=======
+    public void bulkDataInsertion(String profileListObj) {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            List<UserProfile> profileList = objectMapper.readValue(profileListObj, new TypeReference<List<UserProfile>>() {
+            });
+
+            // Now, personList contains the deserialized objects
+            for (UserProfile up : profileList) {
+                System.out.println(up);
+            }
+            String sql = "INSERT INTO user_profile(name, email, age, is_fraudulent) VALUES (?, ?, ?, ?)";
+
+            jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+                @Override
+                public void setValues(PreparedStatement preparedStatement, int i) throws SQLException {
+                    UserProfile up = profileList.get(i);
+                    preparedStatement.setString(1, up.getName());
+                    preparedStatement.setString(2, up.getEmail());
+                    preparedStatement.setInt(3, up.getAge());
+                    preparedStatement.setBoolean(4, false);
+
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
                 }
 
                 @Override
                 public int getBatchSize() {
+<<<<<<< HEAD
                     return UserProfileList.size();
                 }
             });
@@ -183,6 +234,14 @@ public class UserProfileServiceImpl implements UserProfileService {
             e.printStackTrace();
         }
         return updateCounts.length;
+=======
+                    return profileList.size();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
     }
 
     private ProfileLikes findProfileLikesById(Long visitorId) throws ResourceNotFoundException {
@@ -266,7 +325,11 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     public List<ProfileVisits> findProfileVisitorsByUserId(Long userId) throws ResourceNotFoundException {
+<<<<<<< HEAD
         String sql = "SELECT * From profile_visits WHERE visited_profile_id=" + userId + " ORDER BY visit_timestamp DESC";
+=======
+        String sql = "SELECT * From profile_visits WHERE visited_profile_id=" + userId+ "ORDER BY visit_timestamp DESC";
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 
         List<ProfileVisits> profileVisitsList = jdbcTemplate.query(sql, new RowMapper<ProfileVisits>() {
             @Override

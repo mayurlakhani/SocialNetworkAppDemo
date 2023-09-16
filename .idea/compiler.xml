@@ -3,15 +3,13 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="EurekaServer" />
-        <module name="api-gateway" />
-        <module name="userprofile" />
-        <module name="kafka-consumer-database" />
-      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="api-gateway" target="17" />
+      <module name="EurekaServer" target="17" />
+      <module name="kafka-consumer-database" target="17" />
+      <module name="social-network" target="17" />
+      <module name="userprofile" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
