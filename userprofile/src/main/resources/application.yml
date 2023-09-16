@@ -12,6 +12,7 @@ spring:
 
   kafka:
 <<<<<<< HEAD
+<<<<<<< HEAD
     consumer:
       topic1: userProfile
       topic2: userProfileVisitTopic
@@ -19,6 +20,8 @@ spring:
       topicRes: response_notification
       topic4: profileVisitsList
 =======
+=======
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
     topic:
       name: userProfile
     topic-profile-visit:
@@ -31,6 +34,9 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+<<<<<<< HEAD
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
+=======
 >>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
     producer:
       bootstrap-servers: localhost:9092

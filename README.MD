@@ -41,9 +41,13 @@ curl --location --request GET 'http://localhost:8081/actuator/health'
 
 ## Future Aspects
 <<<<<<< HEAD
+<<<<<<< HEAD
 ![Future Aspects.png](Future%20Aspects.png)
 
 
+=======
+![Future Aspects.png](Future%20Aspects.png)
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 =======
 ![Future Aspects.png](Future%20Aspects.png)
 >>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3

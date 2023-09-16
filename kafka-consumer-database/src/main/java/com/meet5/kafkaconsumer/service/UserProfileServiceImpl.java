@@ -1,7 +1,10 @@
 package com.meet5.kafkaconsumer.service;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.fasterxml.jackson.core.JsonProcessingException;
+=======
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 =======
 >>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -16,7 +19,11 @@ import com.meet5.kafkaconsumer.utils.UserValidator;
 import com.meet5.kafkaconsumer.utils.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
+=======
+import org.apache.catalina.User;
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 =======
 import org.apache.catalina.User;
 >>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
@@ -29,6 +36,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import java.io.IOException;
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 =======
 import java.io.IOException;
 >>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
@@ -39,6 +50,10 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import java.util.stream.Collectors;
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 =======
 import java.util.stream.Collectors;
 >>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
@@ -48,6 +63,7 @@ import java.util.stream.Collectors;
 public class UserProfileServiceImpl implements UserProfileService {
 
     private final JdbcTemplate jdbcTemplate;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     @Autowired
@@ -59,6 +75,8 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
 =======
+=======
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
     private UserValidator userValidator;
 
     public UserProfileServiceImpl(DataSource dataSource) {
@@ -66,6 +84,9 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
 
+<<<<<<< HEAD
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
+=======
 >>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
     @Override
     public int createUserprofile(UserProfile userProfile) throws ResourceNotFoundException, ValidationException {
@@ -181,6 +202,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Override
 <<<<<<< HEAD
+<<<<<<< HEAD
     public int bulkDataInsertion(String profileListObj) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         log.info("Profile List Obj: " + profileListObj);
@@ -199,6 +221,8 @@ public class UserProfileServiceImpl implements UserProfileService {
                     preparedStatement.setString(2, up.getEmail());
                     preparedStatement.setInt(3, up.getAge());
 =======
+=======
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
     public void bulkDataInsertion(String profileListObj) {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -221,11 +245,15 @@ public class UserProfileServiceImpl implements UserProfileService {
                     preparedStatement.setInt(3, up.getAge());
                     preparedStatement.setBoolean(4, false);
 
+<<<<<<< HEAD
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
+=======
 >>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
                 }
 
                 @Override
                 public int getBatchSize() {
+<<<<<<< HEAD
 <<<<<<< HEAD
                     return UserProfileList.size();
                 }
@@ -235,12 +263,17 @@ public class UserProfileServiceImpl implements UserProfileService {
         }
         return updateCounts.length;
 =======
+=======
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
                     return profileList.size();
                 }
             });
         } catch (IOException e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
+=======
 >>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
     }
 
@@ -326,7 +359,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     public List<ProfileVisits> findProfileVisitorsByUserId(Long userId) throws ResourceNotFoundException {
 <<<<<<< HEAD
+<<<<<<< HEAD
         String sql = "SELECT * From profile_visits WHERE visited_profile_id=" + userId + " ORDER BY visit_timestamp DESC";
+=======
+        String sql = "SELECT * From profile_visits WHERE visited_profile_id=" + userId+ "ORDER BY visit_timestamp DESC";
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 =======
         String sql = "SELECT * From profile_visits WHERE visited_profile_id=" + userId+ "ORDER BY visit_timestamp DESC";
 >>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3

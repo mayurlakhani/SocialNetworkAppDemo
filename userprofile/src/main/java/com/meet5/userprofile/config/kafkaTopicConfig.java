@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 public class kafkaTopicConfig {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     @Value("${spring.kafka.consumer.topic1}")
     private String userProfileTopic;
 
@@ -22,6 +23,8 @@ public class kafkaTopicConfig {
     @Value("${spring.kafka.consumer.topic4}")
     private String profileVisitsList;
 =======
+=======
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
     @Value("${spring.kafka.topic.name}")
     private String userProfileTopic;
 
@@ -30,6 +33,9 @@ public class kafkaTopicConfig {
 
     @Value("${spring.kafka.topic-profile-list.name}")
     private String userProfileListTopic;
+<<<<<<< HEAD
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
+=======
 >>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
     @Bean
     public NewTopic topic() {
@@ -49,11 +55,14 @@ public class kafkaTopicConfig {
                 .build();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     @Bean
     public NewTopic topicProfileVisitList() {
         return TopicBuilder.name(profileVisitsList)
                 .build();
     }
+=======
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 =======
 >>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 }

@@ -20,10 +20,15 @@ spring:
           predicates:
             - Path=/eureka/**
 <<<<<<< HEAD
+<<<<<<< HEAD
         #- id: db-service
          # uri: lb://DB-SERVICE
           #predicates:
            # - Path=/
+=======
+        - id: db-service
+          uri: lb://DB-SERVICE
+>>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
 =======
         - id: db-service
           uri: lb://DB-SERVICE
