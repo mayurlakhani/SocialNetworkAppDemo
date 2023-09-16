@@ -44,12 +44,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
         </dependency>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
-=======
->>>>>>> 18c714e096c248e5644ec21e0b2e26d6587d68d3
+
     </dependencies>
 </project>
