@@ -26,6 +26,7 @@ spring:
       topic2: userProfileVisitTopic
       topic3: userProfileListTopic
       topicRes: response_notification
+      topic4: profileVisitsList
       bootstrap-servers: localhost:9092
       group-id: userProfile
       auto-offset-reset: latest

@@ -17,6 +17,9 @@ public class kafkaTopicConfig {
 
     @Value("${spring.kafka.consumer.topic3}")
     private String userProfileListTopic;
+
+    @Value("${spring.kafka.consumer.topic4}")
+    private String profileVisitsList;
     @Bean
     public NewTopic topic() {
         return TopicBuilder.name(userProfileTopic)
@@ -32,6 +35,11 @@ public class kafkaTopicConfig {
     @Bean
     public NewTopic topicProfileVisit() {
         return TopicBuilder.name(userProfileVisitTopic)
+                .build();
+    }
+    @Bean
+    public NewTopic topicProfileVisitList() {
+        return TopicBuilder.name(profileVisitsList)
                 .build();
     }
 }

@@ -16,6 +16,7 @@ spring:
       topic2: userProfileVisitTopic
       topic3: userProfileListTopic
       topicRes: response_notification
+      topic4: profileVisitsList
     producer:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer

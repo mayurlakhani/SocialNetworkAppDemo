@@ -1,4 +1,3 @@
-/*
 package com.meet5.userprofile.model;
 
 import lombok.*;
@@ -23,4 +22,3 @@ public class ProfileVisits {
         return this.visitCounter += visitCounter;
     }
 }
-*/

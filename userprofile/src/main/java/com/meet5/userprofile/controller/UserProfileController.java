@@ -4,12 +4,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.meet5.userprofile.Service.KafkaUserProfileConsumer;
 import com.meet5.userprofile.Service.KafkaUserProfileProducer;
 import com.meet5.userprofile.dto.IdDto;
+import com.meet5.userprofile.dto.ResponseProfileVisitorList;
 import com.meet5.userprofile.dto.UserProfileEvent;
+import com.meet5.userprofile.model.ProfileVisits;
 import com.meet5.userprofile.model.UserProfile;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +29,8 @@ public class UserProfileController {
     @Autowired
     private KafkaUserProfileProducer userProfileProducer;
 
+    @Autowired
+    private KafkaUserProfileConsumer kafkaUserProfileConsumer;
     public UserProfileController(KafkaUserProfileProducer userProfileProducer) {
         this.userProfileProducer = userProfileProducer;
     }
@@ -98,7 +103,7 @@ public class UserProfileController {
     @GetMapping("/user/visitors")
     //@CircuitBreaker(name = "visitors", fallbackMethod = "fallback")
     //@TimeLimiter(name = "visitors")
-    public ResponseEntity<HttpStatus> findProfileVisitorsByVisitedProfileId(@RequestParam(name = "userId") Long userId) {
+    public ResponseEntity<List<ProfileVisits>> findProfileVisitorsByVisitedProfileId(@RequestParam(name = "userId") Long userId) {
         // monolithic way
        /* List<ProfileVisits> profileVisitsList= userProfileService.findProfileVisitorsByUserId(userId);
         if(profileVisitsList.isEmpty()){
@@ -110,7 +115,10 @@ public class UserProfileController {
                 .activity("fetch")
                 .build();
         userProfileProducer.sendProfileVisitorOrProfileLikerId(idDto);
-        return new ResponseEntity(HttpStatus.OK);
+        List<ProfileVisits> lp =  ResponseProfileVisitorList.getProfileVisitsList();
+        log.info("res: " +  lp);
+
+       return new ResponseEntity(lp, HttpStatus.OK);
     }
 
     public String fallbackMethod(Throwable t) {

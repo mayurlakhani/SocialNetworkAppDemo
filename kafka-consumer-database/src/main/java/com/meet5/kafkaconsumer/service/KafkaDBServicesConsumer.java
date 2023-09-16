@@ -107,6 +107,7 @@ public class KafkaDBServicesConsumer {
                     responseEvent.setResponse_for("ProfileLike");
                     responseEvent.setStatus("NOT_FOUND");
                     kafkaDBServicesProducer.sendMessage(responseEvent);
+
                 }
             } else if (ids.getActivity().equals("fetch")) {
                 List<ProfileVisits> profileVisitsList = userProfileService.findProfileVisitorsByUserId(ids.getUser());
@@ -119,6 +120,7 @@ public class KafkaDBServicesConsumer {
                     responseEvent.setEvent("FetchVisitorListSuccess");
                     responseEvent.setResponse_for("Visitor");
                     responseEvent.setStatus("OK");
+                    kafkaDBServicesProducer.sendProfileVisitorsList(profileVisitsList);
                     kafkaDBServicesProducer.sendMessage(responseEvent);
                 }
             }
