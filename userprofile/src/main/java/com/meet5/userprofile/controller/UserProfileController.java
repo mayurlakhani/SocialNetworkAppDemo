@@ -8,8 +8,6 @@ import com.meet5.userprofile.dto.ResponseProfileVisitorList;
 import com.meet5.userprofile.dto.UserProfileEvent;
 import com.meet5.userprofile.model.ProfileVisits;
 import com.meet5.userprofile.model.UserProfile;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -31,6 +29,7 @@ public class UserProfileController {
 
     @Autowired
     private KafkaUserProfileConsumer kafkaUserProfileConsumer;
+
     public UserProfileController(KafkaUserProfileProducer userProfileProducer) {
         this.userProfileProducer = userProfileProducer;
     }
@@ -115,15 +114,16 @@ public class UserProfileController {
                 .activity("fetch")
                 .build();
         userProfileProducer.sendProfileVisitorOrProfileLikerId(idDto);
-        List<ProfileVisits> lp =  ResponseProfileVisitorList.getProfileVisitsList();
-        log.info("res: " +  lp);
+        List<ProfileVisits> lp = ResponseProfileVisitorList.getProfileVisitsList();
+        log.info("res: " + lp);
 
-       return new ResponseEntity(lp, HttpStatus.OK);
+        return new ResponseEntity(lp, HttpStatus.OK);
     }
-
-    public String fallbackMethod(Throwable t) {
+        /*public String fallbackMethod(Throwable t) {
 
         return "Oops! error occurred. please try again";
-    }
+    }*/
 
 }
+
+
